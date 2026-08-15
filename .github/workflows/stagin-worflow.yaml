@@ -17,7 +17,21 @@ jobs:
       run: >
         ssh ec2-user@13.221.130.203 -p 22 "
         cd /home/ec2-user/achintha-project01 &&
-        git pull origin develop &&
+        git pull origin develop"
+
+  docker-build-stage:
+    runs-on: ubuntu-latest
+    steps:
+    - name: install ssh keys
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        name: id_rsa
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+    - name: build and create new container
+      run: >
+        ssh ec2-user@13.221.130.203 -p 22 "
+        cd /home/ec2-user/achintha-project01 &&
         sudo docker build -t myapp:v2 . &&
         sudo docker container stop project1 &&
         sudo docker container rm project1 &&
