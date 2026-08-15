@@ -17,5 +17,4 @@ jobs:
       run: >
         ssh ec2-user@13.221.130.203 -p 22 "
         cd /myapp &&
-        git pull origin develop &&
-        "
+        git pull origin develop"
