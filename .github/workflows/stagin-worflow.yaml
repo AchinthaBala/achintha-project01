@@ -16,5 +16,5 @@ jobs:
     - name: ssh to the server
       run: >
         ssh ec2-user@13.221.130.203 -p 22 "
-        cd /myapp &&
+        cd /root/achintha-project01 &&
         git pull origin develop"
